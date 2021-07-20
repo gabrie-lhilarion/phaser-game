@@ -1,15 +1,31 @@
 import { Scene } from "phaser";
+import { Bullet, Bullets } from "./bullet";
 import beam from './assets/beam.png';
 import bomb from './assets/bomb.png';
 import dude from './assets/dude.png'; 
-import star from './assets/star.png'; 
+import star from './assets/star.png';
+import bullet from './assets/bullet7.png';
+import ship from './assets/bsquadron3.png';
 
 class ShooterGame extends Scene {
+
+    constructor() {
+        super()
+        this.score = 0;
+
+        this.playerLocation;
+
+        this.bullets;
+        this.ship;
+    }
+
     preload() {
         this.load.image('ground', beam);
         this.load.image('bomb', bomb);
         this.load.image('star', star);
         this.load.spritesheet('dude', dude, { frameWidth: 32, frameHeight: 48 } );
+        this.load.image('bullet', bullet);
+        this.load.image('ship', ship);
     }
 
     create() {
@@ -17,6 +33,29 @@ class ShooterGame extends Scene {
         this.createPlayer();
         this.movePlayerWithArrors();
         this.createStars();
+
+        this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
+        
+        this.playerLocationInfo = this.add.text(
+            16, 
+            48, 
+            `Location of player: ${this.player.x} : ${this.player.x}`, 
+            { fontSize: '32px', fill: '#fff' }
+        );
+    
+    
+        this.bullets = new Bullets(this);
+
+        this.ship = this.add.image(400, 500, 'ship');
+        
+        this.input.on('pointermove', (pointer) => {
+            this.ship.x = pointer.x; 
+        });
+
+        this.input.on('pointerdown', (pointer) => {
+
+            this.bullets.fireBullet(this.ship.x, this.ship.y);
+        });
     }
 
     createPlayArea() {
@@ -76,6 +115,13 @@ class ShooterGame extends Scene {
 
     collectStar(player, star) {
         star.disableBody(true, true);
+
+        this.score += 10;
+        this.scoreText.setText('Score: ' + this.score);
+    }
+
+    showPlayerLocation() {
+        this.playerLocationInfo.setText(`Location of player: ${parseInt(this.player.x)} : ${parseInt(this.player.y)}`); 
     }
 
     update() {
@@ -83,16 +129,20 @@ class ShooterGame extends Scene {
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-160);
             this.player.anims.play('left', true);
+            this.showPlayerLocation();
         } else if (this.cursors.right.isDown) {
             this.player.setVelocityX(160);
             this.player.anims.play('right', true);
+            this.showPlayerLocation();
         } else {
             this.player.setVelocityX(0);
             this.player.anims.play('turn');
+            this.showPlayerLocation();
         }
 
         if (this.cursors.up.isDown && this.player.body.touching.down) {
             this.player.setVelocityY(-330);
+            this.showPlayerLocation();
         }
     }
 }
