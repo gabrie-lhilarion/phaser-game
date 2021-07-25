@@ -10,7 +10,7 @@ import ship from './assets/bsquadron3.png';
 class ShooterGame extends Scene {
 
     constructor() {
-        super()
+        super('shooter')
         this.score = 0;
 
         this.bullets;
@@ -137,7 +137,7 @@ class ShooterGame extends Scene {
         this.player.setTint(0xff0000);
         this.player.anims.play('right');
         this.physics.pause();
-      
+        setTimeout( () => {this.scene.start('intro')}, 3000);
     }
 
     update() {

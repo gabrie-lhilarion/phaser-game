@@ -1,6 +1,5 @@
-//import Intro from './intro';
 import ShooterGame from './shooterGame';
-
+import Intro from './intro';
 
 const config = {
     type: Phaser.AUTO,
@@ -17,7 +16,7 @@ const config = {
             debug: false,
         }
     },
-    scene: ShooterGame
+    scene: [Intro,ShooterGame]
 };
 
 export { config }
