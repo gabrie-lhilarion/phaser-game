@@ -12,7 +12,7 @@ class Bullet extends Phaser.Physics.Arcade.Sprite
         this.setActive(true);
         this.setVisible(true);
 
-        this.setVelocityY(-300);
+        this.setVelocityY(300);
     }
 
     preUpdate (time, delta)
@@ -35,12 +35,13 @@ class Bullets extends Phaser.Physics.Arcade.Group
         super(scene.physics.world, scene);
 
         this.createMultiple({
-            frameQuantity: 5,
+            frameQuantity: 500,
             key: 'bullet',
             active: false,
             visible: false,
             classType: Bullet
         });
+
     }
 
     fireBullet (x, y)

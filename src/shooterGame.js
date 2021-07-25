@@ -1,5 +1,5 @@
 import { Scene } from "phaser";
-import { Bullet, Bullets } from "./bullet";
+import { Bullets } from "./bullet";
 import beam from './assets/beam.png';
 import bomb from './assets/bomb.png';
 import dude from './assets/dude.png'; 
@@ -13,10 +13,10 @@ class ShooterGame extends Scene {
         super()
         this.score = 0;
 
-        this.playerLocation;
-
         this.bullets;
         this.ship;
+
+        this.gameOver = false;
     }
 
     preload() {
@@ -29,36 +29,30 @@ class ShooterGame extends Scene {
     }
 
     create() {
-        this.createPlayArea();
+        this.createBattleField();
         this.createPlayer();
         this.movePlayerWithArrors();
         this.createStars();
 
         this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#fff' });
-        
-        this.playerLocationInfo = this.add.text(
-            16, 
-            48, 
-            `Location of player: ${this.player.x} : ${this.player.x}`, 
-            { fontSize: '32px', fill: '#fff' }
-        );
-    
-    
+        this.gameOverText = this.add.text(400, 300, 'GAME OVER', { fontSize: '64px', fill: '#fff' });
+        this.gameOverText.setOrigin(0.5);
+        this.gameOverText.visible = false;
+
+
         this.bullets = new Bullets(this);
 
-        this.ship = this.add.image(400, 500, 'ship');
-        
-        this.input.on('pointermove', (pointer) => {
-            this.ship.x = pointer.x; 
-        });
+        this.ship = this.add.image(100, 50, 'ship');
+       
 
-        this.input.on('pointerdown', (pointer) => {
-
+        setInterval( () => {
             this.bullets.fireBullet(this.ship.x, this.ship.y);
-        });
+        }, 6000);
+
+        this.bombPlayer();
     }
 
-    createPlayArea() {
+    createBattleField() {
         this.platForms = this.physics.add.staticGroup();
         this.platForms.create(400, 568, 'ground').setScale(2).refreshBody();
         this.platForms.create(400, 400, 'ground');
@@ -71,6 +65,7 @@ class ShooterGame extends Scene {
         this.player.setBounce(0.2);
 
         this.player.setCollideWorldBounds(true);
+
         this.physics.add.collider(this.player, this.platForms);
 
         this.anims.create({
@@ -118,10 +113,31 @@ class ShooterGame extends Scene {
 
         this.score += 10;
         this.scoreText.setText('Score: ' + this.score);
+
+        if (this.stars.countActive(true) === 0)
+        {
+            this.stars.children.iterate(function (child) {
+    
+                child.enableBody(true, child.x, 0, true, true);
+    
+            });
+    
+            const x = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+    
+        }
+
     }
 
-    showPlayerLocation() {
-        this.playerLocationInfo.setText(`Location of player: ${parseInt(this.player.x)} : ${parseInt(this.player.y)}`); 
+    bombPlayer() {
+        this.physics.add.collider(this.player, this.bullets,  this.explode, null, this);       
+    }
+
+    explode(player, bullets) {
+        this.gameOverText.visible = true;
+        this.player.setTint(0xff0000);
+        this.player.anims.play('right');
+        this.physics.pause();
+      
     }
 
     update() {
@@ -129,20 +145,20 @@ class ShooterGame extends Scene {
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-160);
             this.player.anims.play('left', true);
-            this.showPlayerLocation();
+            this.ship.x = this.player.x;
+
         } else if (this.cursors.right.isDown) {
             this.player.setVelocityX(160);
-            this.player.anims.play('right', true);
-            this.showPlayerLocation();
+            this.player.anims.play('right', true); 
+            this.ship.x = this.player.x;
+
         } else {
             this.player.setVelocityX(0);
-            this.player.anims.play('turn');
-            this.showPlayerLocation();
+            this.player.anims.play('turn'); 
         }
 
         if (this.cursors.up.isDown && this.player.body.touching.down) {
-            this.player.setVelocityY(-330);
-            this.showPlayerLocation();
+            this.player.setVelocityY(-330); 
         }
     }
 }
