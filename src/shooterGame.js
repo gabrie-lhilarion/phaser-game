@@ -47,7 +47,7 @@ class ShooterGame extends Scene {
 
         setInterval( () => {
             this.bullets.fireBullet(this.ship.x, this.ship.y);
-        }, 6000);
+        }, 10000);
 
         this.bombPlayer();
     }
@@ -137,6 +137,12 @@ class ShooterGame extends Scene {
         this.player.setTint(0xff0000);
         this.player.anims.play('right');
         this.physics.pause();
+
+        // const saveGame = new SaveScore()
+        // saveGame.newGame('my-shooter-game')
+        // .then(response => {console.log(response)});
+
+
         setTimeout( () => {this.scene.start('intro')}, 3000);
     }
 
