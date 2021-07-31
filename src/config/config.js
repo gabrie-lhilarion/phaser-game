@@ -1,5 +1,5 @@
-import ShooterGame from './shooterGame';
-import Intro from './intro';
+import ShooterGame from './scenes/game';
+import Intro from './scenes/intro';
 
 const config = {
     type: Phaser.AUTO,

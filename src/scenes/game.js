@@ -1,11 +1,12 @@
 import { Scene } from "phaser";
-import { Bullets } from "./bullet";
+import { Bullets } from "../bullet";
 import beam from './assets/beam.png';
 import bomb from './assets/bomb.png';
 import dude from './assets/dude.png'; 
 import star from './assets/star.png';
 import bullet from './assets/bullet7.png';
 import ship from './assets/bsquadron3.png';
+import API from '../scoresApi';
 
 class ShooterGame extends Scene {
 
@@ -137,12 +138,9 @@ class ShooterGame extends Scene {
         this.player.setTint(0xff0000);
         this.player.anims.play('right');
         this.physics.pause();
-
-        // const saveGame = new SaveScore()
-        // saveGame.newGame('my-shooter-game')
-        // .then(response => {console.log(response)});
-
-
+        const { setScore } = API;
+        setScore({"user": "Mark Dean", "score": 20});
+        console.log(API.getScore());
         setTimeout( () => {this.scene.start('intro')}, 3000);
     }
 
