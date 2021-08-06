@@ -1,5 +1,6 @@
-import ShooterGame from './scenes/game';
-import Intro from './scenes/intro';
+import ShooterGame from '../scenes/game';
+import Intro from '../scenes/boot';
+import Leaderboard from '../scenes/leaderboard';
 
 const config = {
     type: Phaser.AUTO,
@@ -16,7 +17,7 @@ const config = {
             debug: false,
         }
     },
-    scene: [Intro,ShooterGame]
+    scene: [ Leaderboard,Intro,ShooterGame]
 };
 
 export { config }
