@@ -8,16 +8,20 @@ import bullet from '../assets/bullet7.png';
 import ship from '../assets/bsquadron3.png';
 import API from '../utils/scoresApi';
 
-class ShooterGame extends Scene {
+class Game extends Scene {
 
     constructor() {
-        super('shooter')
+        super('game')
         this.score = 0;
 
         this.bullets;
         this.ship;
 
         this.gameOver = false;
+    }
+
+    init(data) {
+        this.name = data.name;
     }
 
     preload() {
@@ -139,8 +143,10 @@ class ShooterGame extends Scene {
         this.player.anims.play('right');
         this.physics.pause();
         const { setScore} = API;
-        setScore({"user": "Mark Dean", "score": 20});
-        setTimeout( () => {this.scene.start('intro')}, 3000);
+        this.score > 0 ? setScore({ "user": this.name, "score": this.score }) :
+         setScore({ "user": this.name, "score": "0" });
+        console.log(this.score);
+        setTimeout( () => {this.scene.start('welcome')}, 3000);
     }
 
     update() {
@@ -166,5 +172,5 @@ class ShooterGame extends Scene {
     }
 }
 
-export default ShooterGame;
+export default Game;
 

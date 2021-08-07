@@ -1,7 +1,6 @@
-import ShooterGame from '../scenes/game';
-import Intro from '../scenes/boot';
+import Game from '../scenes/game';
 import Leaderboard from '../scenes/leaderboard';
-
+import Welcome from '../scenes/welcome';
 const config = {
     type: Phaser.AUTO,
     parent: 'phaser-example',
@@ -17,7 +16,7 @@ const config = {
             debug: false,
         }
     },
-    scene: [ Leaderboard,Intro,ShooterGame]
+    scene: [Welcome, Leaderboard, Game]
 };
 
 export { config }
