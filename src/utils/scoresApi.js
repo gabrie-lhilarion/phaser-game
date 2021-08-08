@@ -1,6 +1,6 @@
 
 const API = (() => {
-    const key = 'YlwkuVbpmNtEfv66JDMQ';
+    const key = 'iLHiRkDYwfN6P6ol4m4c';
     const urlRequest = `https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/${key}/scores`;
 
     const setScore = (data) => fetch(urlRequest, {
