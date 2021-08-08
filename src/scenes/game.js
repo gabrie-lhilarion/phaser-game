@@ -6,16 +6,19 @@ import dude from '../assets/dude.png';
 import star from '../assets/star.png';
 import bullet from '../assets/bullet7.png';
 import ship from '../assets/bsquadron3.png';
+import Scores from '../utils/scores'
 import API from '../utils/scoresApi';
 
 class Game extends Scene {
 
     constructor() {
-        super('game')
-        this.score = 0;
+        super('game');
 
         this.bullets;
+
         this.ship;
+
+        this.score = new Scores(0);
 
         this.gameOver = false;
     }
@@ -116,8 +119,8 @@ class Game extends Scene {
     collectStar(player, star) {
         star.disableBody(true, true);
 
-        this.score += 10;
-        this.scoreText.setText('Score: ' + this.score);
+        this.score.set(10);
+        this.scoreText.setText('Score: ' + this.score.get());
 
         if (this.stars.countActive(true) === 0)
         {
@@ -142,10 +145,13 @@ class Game extends Scene {
         this.player.setTint(0xff0000);
         this.player.anims.play('right');
         this.physics.pause();
+
         const { setScore} = API;
-        this.score > 0 ? setScore({ "user": this.name, "score": this.score }) :
+        this.score.get() > 0 ? setScore({ "user": this.name, "score": this.score.get() }) :
          setScore({ "user": this.name, "score": "0" });
-        console.log(this.score);
+
+        this.score.reset();
+        
         setTimeout( () => {this.scene.start('welcome')}, 3000);
     }
 
