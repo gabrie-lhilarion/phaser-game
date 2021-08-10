@@ -7,7 +7,7 @@ const Styles = (() => {
         padding: '6px', 
         font: '15px Arial',
         borderRadius: '6px',
-        textAlign: 'center',
+        textAlign: 'right',
         cursor: 'pointer',
     }
 
@@ -39,7 +39,18 @@ const Styles = (() => {
         cursor: 'pointer'
     }
 
-    return { leaderboard, backButton, startButton, leaderboardButton }
+    const instructionButton = {
+        backgroundColor: 'bisque', 
+        color: 'black',
+        width: '350px', 
+        padding: '10px', 
+        font: '24px Arial',
+        borderRadius: '6px',
+        textAlign: 'center',
+        cursor: 'pointer'
+    }
+
+    return { leaderboard, backButton, startButton, leaderboardButton, instructionButton }
 
 })();
 

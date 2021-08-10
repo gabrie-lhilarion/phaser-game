@@ -18,6 +18,7 @@ class Welcome extends Scene {
         this.createForm()
         this.createStartButton();
         this.createLeaderboardButton();
+        this.createInstructionButton();
     }
 
     createForm() {
@@ -59,13 +60,24 @@ class Welcome extends Scene {
 
     createLeaderboardButton() {
                       
-        const leaderBoard = this.add.dom(400, 150, 'div', this.style.leaderboardButton , 'VIEW LEADERBOARD');
+        const leaderBoard = this.add.dom(400, 130, 'div', this.style.leaderboardButton , 'VIEW LEADERBOARD');
               leaderBoard.setOrigin(.5);
               leaderBoard.setInteractive({enabled: true, hitArea:{x: 220, y: 50}});
 
               this.leaderBoard = leaderBoard;
 
         leaderBoard.on('pointerdown', () => { this.scene.start('Leaderboard') });
+    }
+
+    createInstructionButton() {
+                      
+        const instructionButton = this.add.dom(400, 180, 'div', this.style.instructionButton, 'SEE HOW TO PLAY');
+              instructionButton.setOrigin(.5);
+              instructionButton.setInteractive({enabled: true, hitArea:{x: 220, y: 50}});
+
+              this.instructionButton = instructionButton;
+
+              instructionButton.on('pointerdown', () => { this.scene.start('instruction') });
     }
 
 }
