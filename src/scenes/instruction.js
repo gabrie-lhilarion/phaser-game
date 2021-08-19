@@ -1,5 +1,5 @@
 import { Scene } from 'phaser';
-import IntroImage from '../assets/intro.jpg';
+import IntroImage from '../assets/intro.png';
 import Styles from '../utils/styles';
 
 class Instruction extends Scene {
