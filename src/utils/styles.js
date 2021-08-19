@@ -50,7 +50,11 @@ const Styles = (() => {
   };
 
   return {
-    leaderboard, backButton, startButton, leaderboardButton, instructionButton,
+    leaderboard, 
+    backButton, 
+    startButton, 
+    leaderboardButton, 
+    instructionButton,
   };
 })();
 
