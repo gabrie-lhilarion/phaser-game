@@ -58,7 +58,7 @@ Give a ⭐️ if you like this project!
 
 👤 **Gabriel Hilarion**
 
-* Github: **[@gabrie-lhilarion](https://github.com/rindrajosia)**
+* Github: **[@gabrie-lhilarion](https://github.com/gabrie-lhilarion)**
 * Twitter: **[@gabrielDeman](https://twitter.com/gabrielDeman)**
 * Linkedin: **[linkedin](https://www.linkedin.com/in/gabrielhilarion/)**
 
