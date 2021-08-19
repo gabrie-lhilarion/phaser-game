@@ -45,6 +45,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "phaser": "^3.50.0",
+    "webpack-merge": "^4.2.2",
     "regenerator-runtime": "^0.13.9"
   },
   "jest": {
