@@ -10,7 +10,6 @@ module.exports = merge(base, {
     another: './src/scripts-module.js',
     },
   output: {
-        filename: 'main.js',
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
   },
