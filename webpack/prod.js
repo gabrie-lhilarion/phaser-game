@@ -5,8 +5,17 @@ const base = require('./base');
 
 module.exports = merge(base, {
   mode: 'production',
+  entry: {
+    index: './src/index.js',
+    another: './src/scripts-module.js',
+    },
   output: {
-    filename: 'bundle.min.js',
+        filename: 'main.js',
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+  },
+  optimization: {
+    runtimeChunk: 'single',
   },
 
   devtool: false,
