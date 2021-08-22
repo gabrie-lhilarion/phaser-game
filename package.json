@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --config webpack/base.js ",
     "dev": "webpack-dev-server --config webpack/base.js --open",
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "jest"
   },
   "repository": {
