@@ -10,8 +10,8 @@ class Welcome extends Scene {
   }
 
   preload() {
-    
-    this.load.html('form', 'src/utils/index.html');
+
+    this.load.html('form', 'src/assets/index.html');
   }
 
   create() {
