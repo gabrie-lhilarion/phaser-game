@@ -10,8 +10,28 @@ class Welcome extends Scene {
   }
 
   preload() {
-
-    this.load.html('form', 'src/assets/index.html');
+    const html = `<html>
+    <head>
+        <style>
+            #input-form {
+                padding: 15px;
+                background-color: #1c9330;
+                border-radius: 4px;
+            }
+            #input-form input {
+                padding: 10px;
+                font-size: 20px;
+                width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="input-form">
+            <input type="text" name="name" placeholder="Full Name" />
+        </div>
+    </body>
+</html>`
+    this.load.html('form', html);
   }
 
   create() {
