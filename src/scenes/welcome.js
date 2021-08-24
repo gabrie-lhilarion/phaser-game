@@ -10,40 +10,55 @@ class Welcome extends Scene {
   }
 
   preload() {
-    this.load.html('form', './form.html');
+    this.load.scenePlugin({
+      key: 'rexuiplugin',
+      url: 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rexuiplugin.min.js',
+      sceneKey: 'rexUI'
+    })
+    
+    this.load.plugin('rextexteditplugin', 'https://raw.githubusercontent.com/rexrainbow/phaser3-rex-notes/master/dist/rextexteditplugin.min.js', true)
+
   }
 
   create() {
-    this.createForm();
-    this.createStartButton();
+ 
+   
     this.createLeaderboardButton();
     this.createInstructionButton();
-  }
 
-  createForm() {
-    this.nameInput = this.add.dom(400, 400).createFromCache('form');
-
-    this.message = this.add.text(400, 270, 'Type your full name \nand press Enter button \nto start game', {
-      color: '#FFFFFF',
-      fontSize: 30,
-      fontStyle: 'bold',
-    }).setOrigin(0.5);
-
-    this.returnKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER);
-
-    this.returnKey.on('down', () => {
-      const name = this.nameInput.getChildByName('name');
-      if (name.value !== null) {
-        this.message.setText(`Welcome, ${name.value}`);
-        this.name = name.value;
-        name.value = '';
-        this.nameInput.setVisible(false);
-        this.startGameDiv.setVisible(true);
+    const playerName = this.add.text(400, 300, 'Enter your fullname', 
+      {
+        fontSize: 30, 
+        textAlign: 'center', 
+        fixedWidth: 360, 
+        fixedHeight: 36, 
+        backgroundColor: '#fff',
+        color: '#000',
+        padding: 5,
+        shadow:
+        {
+          fill: true,
+          blur: 0,
+          offsetY: 0,
+        }, 
       }
-    });
+    )
+
+    playerName.setOrigin(0.5, 0.5)
+  
+    playerName.setInteractive().on('pointerdown', () => {
+      playerName.setText('')
+      this.startGameDiv.setVisible(true)
+      this.rexUI.edit(playerName)
+    })
+
+    this.createStartButton(playerName);
+    
   }
 
-  createStartButton() {
+
+
+  createStartButton(playerName) {
     const startGameDiv = this.add.dom(400, 350, 'div', this.style.startButton, 'START GAME');
     startGameDiv.setOrigin(0.5);
     startGameDiv.setInteractive({ enabled: true, hitArea: { x: 220, y: 50 } });
@@ -51,7 +66,14 @@ class Welcome extends Scene {
     this.startGameDiv = startGameDiv;
     this.startGameDiv.setVisible(false);
 
-    startGameDiv.on('pointerdown', () => { this.scene.start('game', { name: this.name }); });
+    startGameDiv.on('pointerdown', () => {
+        
+      if ( playerName.text.trim() !== 'Enter your fullname' && playerName.text !== '' ) {
+        this.scene.start('game', { name: playerName.text }); 
+      } else {  this.add.text(250, 240, 'Please enter your fullname', { color: 'red', fontSize: '20px ' }); }
+      
+       
+    });
   }
 
   createLeaderboardButton() {
