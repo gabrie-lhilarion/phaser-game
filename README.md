@@ -45,6 +45,8 @@ Run testing cases and Jest will print messages depending on the result
 
 ## See a live demo 
 
+* LIVE DEMO **(https://mystifying-wilson-26a475.netlify.app)**
+
 ## Show your support
 Give a ⭐️ if you like this project!
 
