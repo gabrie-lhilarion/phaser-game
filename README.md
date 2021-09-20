@@ -1,7 +1,7 @@
 # Space Craft Shooter game
 This project consists of building a video game using JavaScript (ES6) and the Phaser game engine.
 ## Game Design Document
-The idea is to keep on earnimg scores by intercepting stars, and avoiding beeing killed by the spacecraft' bullets.
+The idea is to keep on earning scores by intercepting stars, and avoiding being killed by the spacecraft's bullets.
 
 ## How to play
 * Move the player using the up, left and right keys.
