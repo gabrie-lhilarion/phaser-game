@@ -1,49 +1,73 @@
-# Phaser 3 Webpack Project Template
+# Space Craft Shooter game
+This project consists of building a video game using JavaScript (ES6) and the Phaser game engine.
+## Game Design Document
+The idea is to keep on earnimg scores by intercepting stars, and avoiding beeing killed by the spacecraft' bullets.
 
-A Phaser 3 project template with ES6 support via [Babel 7](https://babeljs.io/) and [Webpack 4](https://webpack.js.org/) that includes hot-reloading for development and production-ready builds.
-
-This has been updated for Phaser 3.50.0 version and above.
-
-Loading images via JavaScript module `import` is also supported, although not recommended.
+## How to play
+* Move the player using the up, left and right keys.
+* Fly up by pressing down the up arrow.
+* A combination of the left or right arrow keys with the up arrow key may be required in some occations.
+* Avoid been killed by keeping the enemy's bullet from hitting the player.
 
 ## Requirements
 
-[Node.js](https://nodejs.org) is required to install dependencies and run scripts via `npm`.
+Node.js is required to install dependencies and run scripts via npm.
+Usage
 
-## Available Commands
+## Getting Started:
 
-| Command | Description |
-|---------|-------------|
-| `npm install` | Install project dependencies |
-| `npm start` | Build project and open web server running project |
-| `npm run build` | Builds code bundle with production settings (minification, uglification, etc..) |
+To get a local copy up and running follow these simple example steps:
 
-## Writing Code
+1. Under the repository name, click the Clone or download green button.
 
-After cloning the repo, run `npm install` from your project directory. Then, you can start the local development server by running `npm start`.
+2. Copy the URL given by clicking the clipboard button.
 
-After starting the development server with `npm start`, you can edit any files in the `src` folder and webpack will automatically recompile and reload your server (available at `http://localhost:8080` by default).
 
-## Customizing the Template
+3. Open a terminal window in your local machine and change the current directory to the one you
+   want the clone directory to be made, NOTE that a local server like wampserver is required.
 
-### Babel
+4. Type  git clone and then paste the URL you previously copied to the clipboard.
 
-You can write modern ES6+ JavaScript and Babel will transpile it to a version of JavaScript that you want your project to support. The targeted browsers are set in the `.babelrc` file and the default currently targets all browsers with total usage over "0.25%" but excludes IE11 and Opera Mini.
+5. Open a new terminal window in your local machine and change the current directory to your
+   cloned directory.
 
- ```
-"browsers": [
-  ">0.25%",
-  "not ie 11",
-  "not op_mini all"
-]
- ```
+6. Run `npm install` / `npm i` from the Terminal.
 
-### Webpack
+7. after that `npm run build` from the terminal.
 
-If you want to customize your build, such as adding a new webpack loader or plugin (i.e. for loading CSS or fonts), you can modify the `webpack/base.js` file for cross-project changes, or you can modify and/or create new configuration files and target them in specific npm tasks inside of `package.json'.
+8. Finally `npm start`.
 
-## Deploying Code
+## Testing
 
-After you run the `npm run build` command, your code will be built into a single bundle located at `dist/bundle.min.js` along with any other assets you project depended. 
+Run testing cases and Jest will print messages depending on the result
 
-If you put the contents of the `dist` folder in a publicly-accessible location (say something like `http://mycoolserver.com`), you should be able to open `http://mycoolserver.com/index.html` and play your game.
+  $ npm run test
+
+## See a live demo 
+
+* LIVE DEMO **(https://mystifying-wilson-26a475.netlify.app)**
+
+## See Presentation
+* Watch @ **(https://user-images.githubusercontent.com/59238133/131788284-7ffbd271-0b58-4388-aed6-93bc04dbea61.mp4)**
+## Show your support
+Give a ⭐️ if you like this project!
+
+# Screenshot
+
+* ![screenshot](./screenshots/shot-1.jpg)
+
+
+
+## Author
+
+👤 **Gabriel Hilarion**
+
+* Github: **[@gabrie-lhilarion](https://github.com/gabrie-lhilarion)**
+* Twitter: **[@gabrielDeman](https://twitter.com/gabrielDeman)**
+* Linkedin: **[linkedin](https://www.linkedin.com/in/gabrielhilarion/)**
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the [issues page]().
